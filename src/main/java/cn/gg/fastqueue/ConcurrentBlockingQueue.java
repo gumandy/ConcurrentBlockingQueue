@@ -219,8 +219,7 @@ public class ConcurrentBlockingQueue<E> implements BlockingQueue<E> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
-
+        tail.set(headAfterWirte.get());
     }
 
     @Override
@@ -230,7 +229,12 @@ public class ConcurrentBlockingQueue<E> implements BlockingQueue<E> {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException();
+        for (long t = tail.get(), h = headAfterWirte.get(); t < h; t++) {
+            if (entries[(int) (t & indexMask)].equals(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
