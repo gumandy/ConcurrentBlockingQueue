@@ -1,9 +1,3 @@
-/*
- * Copyright(C) 2013 Agree Corporation. All rights reserved.
- * 
- * Contributors:
- *     Agree Corporation - initial API and implementation
- */
 package cn.gg.fastqueue;
 
 import java.util.concurrent.BlockingQueue;
